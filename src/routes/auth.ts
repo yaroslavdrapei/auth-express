@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import { loginController } from '../controllers/auth/login';
 import { signupController } from '../controllers/auth/signup';
-import { validateAuthBody } from '../middleware/validateAuthBody';
+import { validateUser } from '../middleware/validateUser';
 
 const authRouter = Router();
 
-authRouter.post('/login', validateAuthBody, loginController);
-authRouter.post('/signup', validateAuthBody, signupController);
+authRouter.post('/login', validateUser, loginController);
+authRouter.post('/signup', validateUser, signupController);
 
 export { authRouter };

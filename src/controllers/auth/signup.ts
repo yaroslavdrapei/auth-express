@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import { AuthBody } from '../../types/types';
+import { User } from '../../types/types';
 import { mockUsers } from '../../mock/mockUsers';
 import jwt from 'jsonwebtoken';
 import { hashPassword } from '../../utils/utils';
 
 export const signupController = (req: Request, res: Response): void => {
-  const body = req.body as AuthBody;
+  const body = req.body as User;
 
   const findUser = mockUsers.find((u) => u.username === body.username);
 
@@ -14,7 +14,7 @@ export const signupController = (req: Request, res: Response): void => {
     return;
   }
 
-  const newUser: AuthBody = {
+  const newUser: User = {
     username: body.username,
     password: hashPassword(body.password)
   };

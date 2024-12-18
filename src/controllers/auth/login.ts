@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import { AuthBody } from '../../types/types';
+import { User } from '../../types/types';
 import { mockUsers } from '../../mock/mockUsers';
 import jwt from 'jsonwebtoken';
 import { comparePasswords } from '../../utils/utils';
 
 export const loginController = (req: Request, res: Response): void => {
-  const body = req.body as AuthBody;
+  const body = req.body as User;
 
   const user = mockUsers.find((u) => u.username === body.username);
 
