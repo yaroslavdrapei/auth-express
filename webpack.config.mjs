@@ -25,6 +25,6 @@ export default {
     ],
   },
   externals: {
-    'ffmpeg-static': 'commonjs ffmpeg-static'
+    'bcrypt': 'commonjs bcrypt'
   }
 };

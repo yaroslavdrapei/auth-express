@@ -2,13 +2,14 @@ import { Request, Response } from 'express';
 import { AuthBody } from '../../types/types';
 import { mockUsers } from '../../mock/mockUsers';
 import jwt from 'jsonwebtoken';
+import { comparePasswords } from '../../utils/utils';
 
 export const loginController = (req: Request, res: Response): void => {
   const body = req.body as AuthBody;
 
   const user = mockUsers.find((u) => u.username === body.username);
 
-  if (!user || user.password !== body.password) {
+  if (!user || !comparePasswords(body.password, user.password)) {
     res.status(401).json({ message: 'Invalid credentials' });
     return;
   }
