@@ -7,12 +7,14 @@ body {
   background-color: #f4f4f9;
   height: 100vh;
   background-color: #333;
-  display: grid;
+  display: flex;
+  justify-content: center;
   place-items: center;
+  flex-wrap: wrap;
 }
 
 .form {
-  width: 100%;
+  width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,6 +27,13 @@ body {
   max-width: 300px;
   padding: 10px;
   font-size: 18px;
+}
+
+.form-btns {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
 }
 
 .form-btn {

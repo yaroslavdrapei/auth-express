@@ -3,16 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Auth</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js"></script>
 </head>
 <body>
-  <form action="POST" class="form">
+  <form action="POST" data-action="login" class="form">
     <input type="text" name="username" class="form-input" placeholder="Username">
     <input type="password" name="password" class="form-input" placeholder="Password">
-    <button type="submit" class="form-btn">Submit</button>
-    <div class="form-info">dfgf</div>
+    <button type="submit"  class="form-btn">Login</button>
   </form>
+  <form action="POST" data-action="signup" class="form">
+    <input type="text" name="username" class="form-input" placeholder="Username">
+    <input type="password" name="password" class="form-input" placeholder="Password">
+    <button type="submit" class="form-btn">Signup</button>
+  </form>
+  <div class="form-info"></div>
 </body>
 </html>
