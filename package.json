@@ -1,0 +1,28 @@
+{
+  "name": "ytd",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "ytd": "dist/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.10.0",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.5.4",
+    "@typescript-eslint/eslint-plugin": "8.5.0",
+    "@typescript-eslint/parser": "8.5.0",
+    "eslint": "9.10.0",
+    "globals": "15.9.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.6.2",
+    "typescript-eslint": "8.5.0",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
