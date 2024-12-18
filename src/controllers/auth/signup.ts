@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 import { User } from '../../types/types';
-import { mockUsers } from '../../mock/mockUsers';
 import jwt from 'jsonwebtoken';
 import { hashPassword } from '../../utils/utils';
+import { getUserByUsername, insertUser } from '../../repositories/users';
 
-export const signupController = (req: Request, res: Response): void => {
+export const signupController = async (req: Request, res: Response): Promise<void> => {
   const body = req.body as User;
 
-  const findUser = mockUsers.find((u) => u.username === body.username);
+  const findUser = await getUserByUsername(body.username).catch((err) => console.log(err));
 
   if (findUser) {
     res.status(409).json({ message: 'Username already exists' });
@@ -19,7 +19,7 @@ export const signupController = (req: Request, res: Response): void => {
     password: hashPassword(body.password)
   };
 
-  mockUsers.push(newUser);
+  await insertUser(newUser).catch((err) => console.log(err));
 
   const token = jwt.sign(newUser, process.env.SIGN_KEY as string);
 

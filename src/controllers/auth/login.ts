@@ -1,13 +1,14 @@
 import { Request, Response } from 'express';
 import { User } from '../../types/types';
-import { mockUsers } from '../../mock/mockUsers';
 import jwt from 'jsonwebtoken';
 import { comparePasswords } from '../../utils/utils';
+import { getUserByUsername } from '../../repositories/users';
 
-export const loginController = (req: Request, res: Response): void => {
+export const loginController = async (req: Request, res: Response): Promise<void> => {
   const body = req.body as User;
 
-  const user = mockUsers.find((u) => u.username === body.username);
+  const user = await getUserByUsername(body.username).catch((err) => console.log(err));
+  console.log(user);
 
   if (!user || !comparePasswords(body.password, user.password)) {
     res.status(401).json({ message: 'Invalid credentials' });
