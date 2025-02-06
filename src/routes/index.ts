@@ -1,17 +1,18 @@
 import { Router } from 'express';
 import { authRouter } from './auth';
 import path from 'path';
+import { redirectNonAuth } from '../middleware/redirectNonAuth';
 
 const routes = Router();
 
-routes.get('/', (req, res) => {
+routes.get('/auth', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/auth.html'));
+});
+
+routes.get('/', redirectNonAuth, (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-routes.get('/welcome', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/welcome.html'));
-});
-
-routes.use('/auth', authRouter);
+routes.use('/api/auth', authRouter);
 
 export { routes };

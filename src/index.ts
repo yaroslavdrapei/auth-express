@@ -3,14 +3,14 @@ dotenv.config();
 
 import express from 'express';
 import { routes } from './routes';
-import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
 const PORT = 3000;
 const app = express();
 
-app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static('public', { index: false }));
+app.use(cookieParser(process.env.SIGN_KEY));
 
 app.use(routes);
 

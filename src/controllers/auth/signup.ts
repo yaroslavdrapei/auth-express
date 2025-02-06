@@ -23,5 +23,6 @@ export const signupController = async (req: Request, res: Response): Promise<voi
 
   const token = jwt.sign(newUser, process.env.SIGN_KEY as string);
 
-  res.status(200).json({ token });
+  res.cookie('token', token, { httpOnly: true, signed: true });
+  res.sendStatus(200);
 };
