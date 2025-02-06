@@ -3,21 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Auth</title>
+  <title>Welcome page</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js"></script>
 </head>
 <body>
-  <form action="POST" data-action="login" class="form">
-    <input type="text" name="username" class="form-input" placeholder="Username">
-    <input type="password" name="password" class="form-input" placeholder="Password">
-    <button type="submit"  class="form-btn">Login</button>
-  </form>
-  <form action="POST" data-action="signup" class="form">
-    <input type="text" name="username" class="form-input" placeholder="Username">
-    <input type="password" name="password" class="form-input" placeholder="Password">
-    <button type="submit" class="form-btn">Signup</button>
-  </form>
-  <div class="form-info"></div>
+  <header class="header">
+    <h1 class="header-title">Welcome page! Soon it will be available only for authenticated users</h1>
+    <div class="header-body">
+      <h2>Your username: <span class="header-username"></span></h2>
+      <button class="form-btn logout">Log out</button>
+    </div>
+  </header>
 </body>
 </html>

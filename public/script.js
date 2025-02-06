@@ -3,11 +3,14 @@
 window.addEventListener('DOMContentLoaded', () => {
   const forms = document.querySelectorAll('.form');
   const placeInfoElem = document.querySelector('.form-info');
-  const logOutBtn = document.querySelector('.logout');
+  const logOutBtns = document.querySelectorAll('.logout');
 
   trySetUsername();
 
-  logOutBtn.addEventListener('click', () => window.location.href = '/')
+  logOutBtns.forEach(btn => btn.addEventListener('click', async () => {
+    await fetch('http://localhost:3000/api/auth/logout', { method: 'POST' });
+    window.location.href = '/';
+  }))
 
   forms.forEach(form => {
     form.addEventListener('submit', formHandler);
@@ -27,7 +30,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const action = this.getAttribute('data-action');
 
-    const response = await fetch(`http://localhost:3000/auth/${action}`, {
+    const response = await fetch(`http://localhost:3000/api/auth/${action}`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -37,13 +40,12 @@ window.addEventListener('DOMContentLoaded', () => {
     .catch(err => console.log(err));
 
     if (response.ok) {
-      const { token } = await response.json();
-      localStorage.setItem('jwt', token); 
       localStorage.setItem('username', body.username);
-      window.location.href = '/welcome';
+      window.location.href = '/';
     } else {
       try {
         const { message } = await response.json();
+        console.log('Error:', message);
       } catch (err) {
         console.log('Unexpected error:', err)
       }
