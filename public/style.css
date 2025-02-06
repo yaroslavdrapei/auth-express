@@ -51,3 +51,13 @@ body {
   color: #fff;
   font-size: 24px;
 }
+
+.header {
+  color: #fff;
+}
+
+.header-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

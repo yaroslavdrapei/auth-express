@@ -3,8 +3,11 @@
 window.addEventListener('DOMContentLoaded', () => {
   const forms = document.querySelectorAll('.form');
   const placeInfoElem = document.querySelector('.form-info');
+  const logOutBtn = document.querySelector('.logout');
 
-  const authBtns = document.querySelectorAll('[data-action]');
+  trySetUsername();
+
+  logOutBtn.addEventListener('click', () => window.location.href = '/')
 
   forms.forEach(form => {
     form.addEventListener('submit', formHandler);
@@ -36,6 +39,8 @@ window.addEventListener('DOMContentLoaded', () => {
     if (response.ok) {
       const { token } = await response.json();
       localStorage.setItem('jwt', token); 
+      localStorage.setItem('username', body.username);
+      window.location.href = '/welcome';
     } else {
       try {
         const { message } = await response.json();
@@ -49,3 +54,12 @@ window.addEventListener('DOMContentLoaded', () => {
     [...this.children].forEach(child => child.value = '');
   }
 });
+
+const trySetUsername = () => {
+  const usernameContainer = document.querySelector('.header-username');
+  const username = localStorage.getItem('username');
+
+  if (usernameContainer && username) {
+    usernameContainer.textContent = username;
+  }
+};
